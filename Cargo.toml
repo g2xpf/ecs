@@ -7,4 +7,5 @@ edition = "2018"
 [dependencies]
 bitflags = "*"
 glsl-linalg = { path = "../glsl-linalg" }
+glium = "0.23.0"
 

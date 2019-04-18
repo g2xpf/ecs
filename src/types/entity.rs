@@ -1,3 +1,10 @@
 use crate::types::component;
 
-pub struct Entity(Vec<component::Component>);
+#[derive(Default, Debug)]
+pub struct Entity(pub Vec<component::Component>);
+
+impl Entity {
+    pub fn new() -> Self {
+        Entity(Vec::new())
+    }
+}
