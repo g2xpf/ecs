@@ -5,3 +5,6 @@ authors = ["g2_xpf <nameko.jack@gmail.com>"]
 edition = "2018"
 
 [dependencies]
+bitflags = "*"
+glsl-linalg = { path = "../glsl-linalg" }
+
