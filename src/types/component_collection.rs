@@ -1,5 +1,5 @@
 #[derive(Default, Debug)]
-pub struct ComponentCollection<T>(Vec<Option<Box<T>>>);
+pub struct ComponentCollection<T>(pub Vec<Option<Box<T>>>);
 
 impl<T> ComponentCollection<T> {
     pub fn new() -> Self {

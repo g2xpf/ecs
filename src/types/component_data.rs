@@ -1,15 +1,20 @@
 use crate::types::{component_collection, component_type};
+use glsl_linalg::float;
 
-type Float = f32;
-
-pub struct ComponentData {
-    pub rigid: component_collection::ComponentCollection<component_type::Rigid<Float>>,
-    pub shape: component_collection::ComponentCollection<component_type::Shape<Float>>,
+pub struct ComponentData<F>
+where
+    F: float::Float,
+{
+    pub rigid: component_collection::ComponentCollection<component_type::Rigid<F>>,
+    pub shape: component_collection::ComponentCollection<component_type::Shape<F>>,
     pub renderer: Option<Box<component_type::Renderer>>,
     pub event_handler: Option<Box<component_type::EventHandler>>,
 }
 
-impl ComponentData {
+impl<F> ComponentData<F>
+where
+    F: float::Float,
+{
     pub fn new() -> Self {
         ComponentData {
             rigid: component_collection::ComponentCollection::new(),

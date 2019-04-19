@@ -1,8 +1,12 @@
 use crate::types::component_type;
 use crate::types::system::System;
 use glium;
+use glsl_linalg::float;
 
-pub fn init_gl() -> System {
+pub fn init_gl<F>() -> System<F>
+where
+    F: float::Float,
+{
     |_entity, component_data| {
         let events_loop = glium::glutin::EventsLoop::new();
         let window = glium::glutin::WindowBuilder::new();

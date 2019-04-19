@@ -1,5 +1,6 @@
 use glsl_linalg::{float, V2};
 
+#[derive(Default, Debug)]
 pub struct Rigid<F>
 where
     F: float::Float,
