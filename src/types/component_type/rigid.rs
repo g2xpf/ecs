@@ -1,19 +1,34 @@
-use glsl_linalg::{float, V2};
+use cgmath::Vector2;
 
-#[derive(Default, Debug)]
-pub struct Rigid<F>
-where
-    F: float::Float,
-{
-    pub r: V2<F>,
-    pub v: V2<F>,
-    pub a: V2<F>,
-    pub mass: F,
-    pub inv_mass: F,
-    pub inertia: F,
-    pub inv_inertia: F,
-    pub omega: F,
-    pub angle: F,
+#[derive(Debug)]
+pub struct Rigid {
+    pub r: Vector2<f32>,
+    pub v: Vector2<f32>,
+    pub a: Vector2<f32>,
+    pub mass: f32,
+    pub inv_mass: f32,
+    pub inertia: f32,
+    pub inv_inertia: f32,
+    pub omega: f32,
+    pub angle: f32,
 
     pub is_static: bool,
+}
+
+impl Default for Rigid {
+    fn default() -> Self {
+        Rigid {
+            r: Vector2::new(0.0, 0.0),
+            v: Vector2::new(0.0, 0.0),
+            a: Vector2::new(0.0, 0.0),
+            mass: Default::default(),
+            inv_mass: Default::default(),
+            inertia: Default::default(),
+            inv_inertia: Default::default(),
+            omega: Default::default(),
+            angle: Default::default(),
+
+            is_static: false,
+        }
+    }
 }

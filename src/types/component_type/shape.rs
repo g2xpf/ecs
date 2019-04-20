@@ -1,10 +1,5 @@
-use glsl_linalg::float;
-
 #[derive(Debug)]
-pub enum Shape<F>
-where
-    F: float::Float,
-{
-    Circle { r: F },
-    Rectangle { w: F, h: F },
+pub enum Shape {
+    Circle { r: f32 },
+    Rectangle { w: f32, h: f32 },
 }

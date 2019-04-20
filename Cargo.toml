@@ -6,6 +6,6 @@ edition = "2018"
 
 [dependencies]
 bitflags = "*"
-glsl-linalg = { path = "../glsl-linalg" }
+cgmath = "*"
 glium = "0.23.0"
 

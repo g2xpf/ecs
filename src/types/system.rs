@@ -1,26 +1,24 @@
-use crate::types::{component_data, entity};
-use glsl_linalg::float;
+use crate::types::component::Component;
+use crate::types::component_data;
 
-pub type System<F> = fn(&mut entity::Entity, &mut component_data::ComponentData<F>);
+pub struct System {
+    pub requirements: Component,
+    pub body: fn(&mut component_data::ComponentData, index: usize),
+}
 
 #[derive(Default)]
-pub struct SystemCollection<F>(Vec<System<F>>)
-where
-    F: float::Float;
+pub struct SystemCollection(Vec<System>);
 
-impl<F> SystemCollection<F>
-where
-    F: float::Float,
-{
+impl SystemCollection {
     pub fn new() -> Self {
         SystemCollection(Vec::new())
     }
 
-    pub fn push(&mut self, system: System<F>) {
+    pub fn push(&mut self, system: System) {
         self.0.push(system);
     }
 
-    pub fn iter<'a>(&'a self) -> std::slice::Iter<'a, System<F>> {
+    pub fn iter<'a>(&'a self) -> std::slice::Iter<'a, System> {
         self.0.iter()
     }
 }
