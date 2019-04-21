@@ -1,7 +1,7 @@
 extern crate ecs;
 
 use cgmath::Vector2;
-use ecs::system_impl::{clear, event_hook, flush, init_gl, render_system};
+use ecs::system_impl::{clear, event_hook, flush, init, init_gl, render_system, update_system};
 use ecs::types::component::Component;
 use ecs::types::component_store::ComponentStore;
 use ecs::types::component_type;
@@ -10,7 +10,9 @@ use ecs::World;
 fn main() {
     let mut world: World = World::new();
     world.add_system(render_system());
+    world.add_system(update_system());
     world.add_init_system(init_gl());
+    world.add_init_system(init());
     world.add_before(clear());
     world.add_after(flush());
     world.add_after(event_hook());

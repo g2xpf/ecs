@@ -25,7 +25,12 @@ impl<'a> Renderer<'a> {
         }
     }
 
-    pub fn draw(&mut self, rigid: &component_type::Rigid, shape: &component_type::Shape) {
+    pub fn draw(
+        &mut self,
+        rigid: &component_type::Rigid,
+        shape: &component_type::Shape,
+        gc: &component_type::GlobalConfig,
+    ) {
         let target = self.target.as_mut().expect("Target not created");
         match *shape {
             component_type::Shape::Circle { r } => {
@@ -38,6 +43,7 @@ impl<'a> Renderer<'a> {
                             radius: r,
                             r: Into::<[f32; 2]>::into((*rigid).r),
                             angle: (*rigid).angle,
+                            scale: gc.scale,
                         },
                         &self.circle_renderer.draw_parameter,
                     )
@@ -54,6 +60,7 @@ impl<'a> Renderer<'a> {
                             h: h,
                             r: Into::<[f32; 2]>::into((*rigid).r),
                             angle: (*rigid).angle,
+                            scale: gc.scale,
                         },
                         &self.rectangle_renderer.draw_parameter,
                     )

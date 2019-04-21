@@ -33,14 +33,17 @@ pub fn flush() -> System {
 pub fn render_system() -> System {
     System {
         requirements: Component::RIGID | Component::SHAPE,
-        body: |component_data, index| match component_data.renderer {
-            Some(ref mut renderer) => {
+        body: |component_data, index| match (
+            &mut component_data.renderer,
+            &mut component_data.global_config,
+        ) {
+            (Some(ref mut renderer), Some(ref mut gc)) => {
                 let rigid = component_data.rigid[index].as_ref().unwrap();
                 let shape = component_data.shape[index].as_ref().unwrap();
-                renderer.draw(rigid, shape);
+                renderer.draw(rigid, shape, gc);
             }
-            None => {
-                panic!("Renderer not initialized!");
+            _ => {
+                panic!("Renderer / GlobalConfig not initialized!");
             }
         },
     }
