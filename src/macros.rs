@@ -1,14 +1,10 @@
-macro_rules! indexed_tuple {
-    ($(pub)? struct $ident:ident($($ty:ty),*)) => {
-        $(pub)? struct $ident($($ty),*);
-
-        indexed_tuple!(struct $ident($($ty),*; 0));
-    };
-
-    (struct $ident:ident($head:ty); $index:expr) => {
-        index
-    };
-
-    (struct $ident:ident($head:ty, $($tail:ty),+))
-
+#[macro_export]
+macro_rules! measure {
+    ($tag:expr, $expr:expr) => {{
+        let start = std::time::Instant::now();
+        let ret = $expr;
+        let end = start.elapsed();
+        println!("{}.{}[s]", end.as_secs(), end.subsec_nanos());
+        ret
+    }};
 }
